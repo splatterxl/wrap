@@ -24,7 +24,21 @@ fn main() -> Result<(), Box<dyn Error>> {
                     exit(1)
                 }
                 Ok(content) => {
-                    println!("{}", wrap::wrap(content));
+                    let mut limit = wrap::LIMIT;
+                    match option_env!("WRAP_LINE_SIZE") {
+                        Some(num) => {
+                            let num = num.parse::<usize>();
+                            match num {
+                                Ok(n) => limit = n,
+                                Err(_) => {
+                                    eprintln!("fatal: invalid WRAP_LINE_SIZE provided");
+                                    exit(1);
+                                }
+                            }
+                        }
+                        None => {}
+                    }
+                    println!("{}", wrap::wrap(content, Some(limit)));
 
                     Ok(())
                 }
