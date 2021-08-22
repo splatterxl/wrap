@@ -1,0 +1,20 @@
+name: Format
+
+on:
+  - push
+
+jobs:
+  fmt:
+    name: Doormat
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Format
+        run: cargo fmt
+      - name: Commit
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "actions@github.com"
+          git add .
+          git commit -m "format files [ci]" --author "$GITHUB_ACTOR <$GITHUB_ACTOR@users.noreply.github.com>" || true
+          git push

@@ -1,0 +1,11 @@
+name: Lint
+on: [push]
+
+jobs:
+  Lint:
+    name: Lint code with Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Clippy
+        run: cargo clippy
