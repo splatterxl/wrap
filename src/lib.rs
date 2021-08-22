@@ -13,15 +13,10 @@ pub const LIMIT: usize = 80;
 /// A common usage of this function would go something like this:
 ///
 /// ```
-/// use wrap::wrap;
-/// use std::fs;
-///
-/// fn main() {
-///     let file = fs::read_to_string("file.txt").unwrap();
-///     // this is just for the example, don't do it in your actual code!
-///     // you could use .unwrap_or() instead.
-///     println!("{}", wrap(file, None));
-/// }
+/// let file = std::fs::read_to_string("file.txt").unwrap();
+/// // this is just for the example, don't do it in your actual code!
+/// // you could use .unwrap_or() instead.
+/// println!("{}", wrap(file, None));
 ///
 /// ```
 ///
@@ -75,11 +70,9 @@ pub fn wrap(text: String, limit: Option<usize>) -> String {
                     }
                 };
                 new_line = format!("{}{}{}", new_line, space, word);
-                continue;
             } else {
                 new_line = format!("{}\n{}", new_line, word);
                 size = len;
-                continue;
             }
         }
 

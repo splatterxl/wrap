@@ -25,18 +25,15 @@ fn main() -> Result<(), Box<dyn Error>> {
                 }
                 Ok(content) => {
                     let mut limit = wrap::LIMIT;
-                    match option_env!("WRAP_LINE_SIZE") {
-                        Some(num) => {
-                            let num = num.parse::<usize>();
-                            match num {
-                                Ok(n) => limit = n,
-                                Err(_) => {
-                                    eprintln!("fatal: invalid WRAP_LINE_SIZE provided");
-                                    exit(1);
-                                }
+                    if let Some(num) = option_env!("WRAP_LINE_SIZE") {
+                        let num = num.parse::<usize>();
+                        match num {
+                            Ok(n) => limit = n,
+                            Err(_) => {
+                                eprintln!("fatal: invalid WRAP_LINE_SIZE provided");
+                                exit(1);
                             }
                         }
-                        None => {}
                     }
                     println!("{}", wrap::wrap(content, Some(limit)));
 
