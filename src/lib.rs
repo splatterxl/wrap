@@ -35,7 +35,7 @@ pub const LIMIT: usize = 80;
 /// Of course, you can provide hard-coded values as well (although it isn't recommended!), and any
 /// `usize` is accepted.
 ///
-/// Ergo, `(usize) 30` is valid, as well as `(usize) 1)`! Although, why would you even try to set the limit to `1`?!
+/// Ergo, `30usize` is valid, as well as `1usize`! Although, why would you even try to set the limit to `1`?!
 ///
 /// [examples]: https://github.com/nearlySplat/wrap/tree/trunk/examples
 /// [repo]: https://github.com/nearlySplat/wrap
